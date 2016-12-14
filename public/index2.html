@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html ng-app="scotchApp">
+
+<head>
+
+    <!-- SPELLS -->
+    <!-- load angular and angular route via CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="/bootstrap/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/maps/jquery-jvectormap-2.0.3.css" />
+    <link href="/bootstrap/css/icheck/flat/green.css" rel="stylesheet" />
+    <link href="/bootstrap/css/floatexamples.css" rel="stylesheet" type="text/css" />
+    <link href="/bootstrap/css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
+    <!-- Holder JS -->
+    <script src="../bower_components/holderjs/holder.js"></script>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACVJCqq6t2siVGEAf27_IlcLTZr-jopWM"></script>
+    <!-- Modernizr -->
+    <script src="../bower_components/modernizr/bin/modernizr"></script>
+    <!-- JS Source -->
+    <script src="../bower_components/jquery/src/jquery.js"></script>
+    <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
+
+    <script src="/bootstrap/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/nprogress.js"></script>
+    <!-- Angular Scripts -->
+    <script src="/js/script.js"></script>
+    <script src="/js/addCtrl.js"></script>
+    <script src="/js/gservice.js"></script>
+
+</head>
+
+
+<body class="nav-md" ng-controller="mainController" style="{{bodyClass ? bodyClass : 'background:#F7F7F7'}}">
+
+    <div class="container body">
+
+        <div class="main_container" >
+
+            <!-- administrator navigation -->
+            <div class="col-md-3 left_col" ng-show="location !==  '/' && location !== '/register'">
+                <div class="left_col scroll-view">
+
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-compass"></i> <span>Store Finder!</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- menu prile quick info -->
+                    <div class="profile">
+                        <div class="profile_pic">
+                            <img src="/bootstrap/images/profile.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <h2>Daniel Almazan</h2>
+                            <span>Administrator</span>
+                        </div>
+                    </div>
+                    <!-- /menu prile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                        <div class="menu_section">
+                            <h3>Genera</h3>
+                            <ul class="nav side-menu">
+                                <li class="current-page">
+                                    <a ng-click="changeView('/dashx')"><i class="fa fa-home"></i> Dashboard </a>
+                                </li>
+
+                                <li><a><i class="fa fa-wrench"></i> Maintenance <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li>
+                                            <a href="#store_categories"> Store Categories </a>
+                                        </li>
+                                        <li>
+                                            <a href="#store_details"> Store Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="#user_details"> User Details </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a><i class="fa fa-cogs"></i> Utilities <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li>
+                                            <a href="#acct_setting"> Account Setting </a>
+                                        </li>
+                                        <li>
+                                            <a href="#archive"> Archive </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <div class="top_nav" ng-show="location !==  '/' && location !== '/register'">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="/bootstrap/images/profile.jpg" alt="...">Daniel Alamazan
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li><a href="javascript:;">  Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li><a ng-click="changeView('/')"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- end administrator navigation -->
+
+            <!-- page content -->
+            <div ng-view></div>
+            <!-- /page content -->
+
+
+        </div>
+        <!--/end main_cotainer-->
+    </div>
+    <!--/end container body-->
+
+
+
+
+    <!--START SCRIPTS-->
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- gauge js -->
+    <script type="text/javascript" src="/bootstrap/js/gauge/gauge.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/gauge/gauge_demo.js"></script>
+    <!-- chart js -->
+    <script src="/bootstrap/js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="/bootstrap/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="/bootstrap/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="/bootstrap/js/icheck/icheck.min.js"></script>
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="/bootstrap/js/moment.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/datepicker/daterangepicker.js"></script>
+
+    <script src="/bootstrap/js/custom.js"></script>
+
+    <!-- flot js -->
+    <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.orderBars.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.time.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/date.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.stack.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/curvedLines.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.resize.js"></script>
+
+    <!-- Datatables -->
+    <script src="/bootstrap/js/datatables/js/jquery.dataTables.js"></script>
+
+    <!-- pace -->
+    <script src="/bootstrap/js/pace/pace.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('input.tableflat').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+
+        var asInitVals = new Array();
+        $(document).ready(function() {
+            var oTable = $('#example').dataTable({
+                "oLanguage": {
+                    "sSearch": "Search all columns:"
+                },
+                "aoColumnDefs": [{
+                        'bSortable': false,
+                        'aTargets': [0]
+                    } //disables sorting for column one
+                ],
+                'iDisplayLength': 12,
+                "sPaginationType": "full_numbers",
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                }
+            });
+            $("tfoot input").keyup(function() {
+                /* Filter on the column based on the index of this element's parent <th> */
+                oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+            });
+            $("tfoot input").each(function(i) {
+                asInitVals[i] = this.value;
+            });
+            $("tfoot input").focus(function() {
+                if (this.className == "search_init") {
+                    this.className = "";
+                    this.value = "";
+                }
+            });
+            $("tfoot input").blur(function(i) {
+                if (this.value == "") {
+                    this.className = "search_init";
+                    this.value = asInitVals[$("tfoot input").index(this)];
+                }
+            });
+        });
+    </script>
+    <!--END SCRIPTS-->
+
+</body>
+
+</html>

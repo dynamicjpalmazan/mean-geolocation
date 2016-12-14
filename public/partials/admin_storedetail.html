@@ -1,0 +1,85 @@
+<div class="right_col" role="main" ng-controller="controllerStoreDetail">
+    <div class="">
+
+        <div class="clearfix"></div>
+
+        <br/>
+
+        <div class="row">
+
+            <div class="col-md-7 col-sm-7 col-xs-7">
+                <div class="panel panel-default">
+
+                    <!-- Panel Title -->
+                    <div class="panel-heading">
+                        <h2 class="panel-title text-center">
+                          Map
+                        </h2>
+                    </div>
+
+                    <!-- Panel Body -->
+                    <div class="panel-body">
+                        <div id="map" style="width:450; height:380px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-sm-5 col-xs-5">
+                <div class="panel panel-default">
+
+                    <!-- Panel Title -->
+                    <div class="panel-heading">
+                        <h2 class="panel-title text-center">
+                          Store Details
+                        </h2>
+                    </div>
+
+                    <!-- Panel Body -->
+                    <div class="panel-body">
+                        <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
+                        <form name="addStoreForm" novalidate>
+                            <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                            <div class="form-group">
+                                <label for="txtStoreName">Store Name*</label>
+                                <input type="text" id="txtStoreName" class="form-control" placeholder="Store Name" ng-model="formData.txtStoreName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtStoreAddress">Address*</label>
+                                <input type="text" id="txtStoreAddress" class="form-control" placeholder="Store Address" ng-model="formData.txtStoreAddress" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtStoreCategory">Category*</label>
+                                <select class="form-control select" data-live-search="true">
+                                   <option disabled="disabled" selected="selected" value="0">[Select Store Category]</option>
+                               </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtLatitude">Latitude*</label>
+                                <input type="text" id="txtLatitude" class="form-control" value="39.500" ng-model="formData.txtLatitude" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtLongitude">Longitude*</label>
+                                <input type="text" id="txtLongitude" class="form-control" value="-98.350" ng-model="formData.txtLongitude" readonly>
+                            </div>
+                            <!-- Submit button. Note that its tied to createStore() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
+                            <button type="submit" class="btn btn-dark btn-block" ng-click="createStore()" ng-disabled="addStoreForm.$invalid">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- footer content -->
+    <footer>
+        <div class="">
+            <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
+                <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+            </p>
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+</div>
