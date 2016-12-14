@@ -1,0 +1,151 @@
+<div ng-controller="controllerStoreCategory">
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <br>
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Store Categories List</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li class="pull-right">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddCategory" style="background-color: rgba(52, 73, 94, 0.94);
+                                    border-color: rgba(38, 185, 154, 0.16); border-radius: 6px;"><span class="fa fa-plus"></span></button>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content" style="height:30em; overflow: auto;">
+                            <table datatable="ng" id="example" class="table table-bordered table-hover table-responsive responsive-utilities jambo_table">
+                                <thead>
+                                    <tr class="headings">
+                                        <th hidden>ID</th>
+                                        <th style="text-align: center;">Name </th>
+                                        <th style="text-align: center;">Description </th>
+                                        <th style="text-align: center;">
+                                            <span class="nobr">Action</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="category in categories">
+                                        <td hidden>{{category._id}}</td>
+                                        <td width="300">{{category.categoryName}}</td>
+                                        <td>{{category.categoryDesc}}</td>
+                                        <td width="180">
+                                            <div class="btn-group">
+                                                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalEditCategory" ng-click="rowDataCategory(category)">
+                                                <span class="glyphicon glyphicon-pencil">&nbspEdit</span>
+                                            </button>
+                                                <button class="btn btn-danger" type="button">Delete&nbsp
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- footer content -->
+        <footer>
+            <div class="">
+                <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
+                    <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+
+    <!-- MODALS -->
+
+    <div id="modalAddCategory" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span>
+                </button>
+                    <h4 class="modal-title" id="myModalLabel">New Store Category</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal form-label-left" name="addCategoryForm" novalidate>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Category Name*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" id="txtCategoryName" placeholder="Category Name" ng-model="formData.txtCategoryName" required>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Category Description*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <textarea class="form-control" id="txtCategoryDesc" rows="3" placeholder="Category Description" ng-model="formData.txtCategoryDesc" required=""></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="createCategory();" ng-disabled="addCategoryForm.$invalid">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="modalEditCategory" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span>
+                </button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Store Category</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-horizontal form-label-left" name="editCategoryForm" novalidate>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Category Name*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="hidden" class="form-control" id="txtEditCategoryID" placeholder="Category ID" ng-model="formData.txtEditCategoryID" required readonly>
+                                <input type="text" class="form-control" id="txtEditCategoryName" placeholder="Category Name" ng-model="formData.txtEditCategoryName" required>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Category Description*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <textarea class="form-control" id="txtEditCategoryDesc" rows="3" placeholder="Category Description" ng-model="formData.txtEditCategoryDesc" required=""></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="updateCategory();" ng-disabled="editCategoryForm.$invalid">Save</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODALS-->

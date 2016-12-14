@@ -8,43 +8,43 @@
 
      // route for the login page
          .when('/', {
-         templateUrl: 'partials/login.html',
+         templateUrl: 'partials/main/login.html',
          controller: 'mainController'
      })
 
      // route for the register page
      .when('/register', {
-         templateUrl: 'partials/register.html',
+         templateUrl: 'partials/main/register.html',
          controller: 'mainController'
      })
 
      // route for the home page
      .when('/dashx', {
-         templateUrl: 'partials/admin_dashboard.html',
+         templateUrl: 'partials/administrator/admin_dashboard.html',
          controller: 'dashxController'
      })
 
      // route for the about page
      .when('/store_categories', {
-         templateUrl: 'partials/admin_storecategory.html',
+         templateUrl: 'partials/administrator/admin_storecategory.html',
          controller: 'storeCategoryController'
      })
 
      // route for the about page
      .when('/store_details', {
-         templateUrl: 'partials/admin_storedetail.html',
+         templateUrl: 'partials/administrator/admin_storedetail.html',
          controller: 'storeDetailController'
      })
 
      // route for the about page
      .when('/user_details', {
-         templateUrl: 'partials/admin_storecategory.html',
+         templateUrl: 'partials/administrator/admin_storecategory.html',
          controller: 'storeCategoryController'
      })
 
      // route for the contact page
      .when('/contact', {
-         templateUrl: 'partials/admin_storedetail.html',
+         templateUrl: 'partials/administrator/admin_storedetail.html',
          controller: 'contactController'
      })
 

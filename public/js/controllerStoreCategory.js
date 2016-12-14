@@ -1,6 +1,6 @@
 // Creates the controllerStoreCategory Module and Controller. Note that it depends on the 'geolocation' module and service.
 var controllerStoreCategory = angular.module('controllerStoreCategory', ['datatables']);
-controllerStoreCategory.controller('controllerStoreCategory', function($scope, $http) {
+controllerStoreCategory.controller('controllerStoreCategory', function($scope, $http, $interval) {
 
     // Initializes Variables
     // ----------------------------------------------------------------------------
@@ -8,6 +8,11 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
 
     // Functions
     // ----------------------------------------------------------------------------
+    // Refresh table data every 10secs
+    $interval(function() {
+        $scope.refreshCategory();
+    }, 10000);
+
     // Refresh the category table
     $scope.refreshCategory = function() {
 
@@ -16,14 +21,12 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
             .success(function(response) {
 
                 $scope.categories = response;
-                $scope.refresh();
 
             }).error(function() {
 
             });
 
     }; // end function refreshCategory
-
 
     // Creates a new category based on the form fields
     $scope.createCategory = function() {
@@ -41,7 +44,6 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
                 // Once complete, clear the form (except location)
                 $scope.formData.txtCategoryName = "";
                 $scope.formData.txtCategoryDesc = "";
-                $scope.refreshCategory();
 
                 // Display success message
                 new PNotify({
@@ -52,10 +54,28 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
 
             })
             .error(function(data) {
+
+                // Display error message
+                new PNotify({
+                    title: 'Oops!',
+                    text: 'Something went wrong during data insertion!',
+                    type: 'error'
+                });
+
+                // Log error
                 console.log('Error: ' + data);
+
             });
 
-    };
+    }; // end function createCategory
+
+    $scope.rowDataCategory = function(category) {
+
+        $scope.formData.txtEditCategoryID = category._id;
+        $scope.formData.txtEditCategoryName = category.categoryName;
+        $scope.formData.txtEditCategoryDesc = category.categoryDesc;
+
+    }; // end function editCategory
 
     // Method calls upon controller initialization
     $scope.refreshCategory();
