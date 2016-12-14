@@ -90,7 +90,7 @@ module.exports = function(app) {
         var categID = req.body._id.replace(/\"/g, "");
         var categName = req.body.categoryName.replace(/\"/g, "");
         var categDesc = req.body.categoryDesc.replace(/\"/g, "");
-        
+
         Category.findByIdAndUpdate(categID, {
             categoryName: categName,
             categoryDesc: categDesc
@@ -98,7 +98,7 @@ module.exports = function(app) {
             if (err) throw err;
 
             // we have the updated user returned to us
-            console.log(category);
+            res.json(req.body);
         });
 
     });

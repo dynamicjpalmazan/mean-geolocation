@@ -9,9 +9,9 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
     // Functions
     // ----------------------------------------------------------------------------
     // Refresh table data every 10secs
-    $interval(function() {
-        $scope.refreshCategory();
-    }, 10000);
+    // $interval(function() {
+    //     $scope.refreshCategory();
+    // }, 10000);
 
     // Refresh the category table
     $scope.refreshCategory = function() {
@@ -67,6 +67,9 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
 
             });
 
+
+        $scope.refreshCategory();
+
     }; // end function createCategory
 
     $scope.rowDataCategory = function(category) {
@@ -76,6 +79,51 @@ controllerStoreCategory.controller('controllerStoreCategory', function($scope, $
         $scope.formData.txtEditCategoryDesc = category.categoryDesc;
 
     }; // end function editCategory
+
+    $scope.updateCategory = function() {
+
+        // Grabs all of the text box fields
+        var categoryData = {
+            _id: $scope.formData.txtEditCategoryID,
+            categoryName: $scope.formData.txtEditCategoryName,
+            categoryDesc: $scope.formData.txtEditCategoryDesc
+        };
+
+        // Saves the category data to the db
+        $http.post('/categoryup', categoryData)
+            .success(function(data) {
+
+                // Once complete, clear the form
+                $scope.formData.txtEditCategoryID = "";
+                $scope.formData.txtEditCategoryName = "";
+                $scope.formData.txtEditCategoryDesc = "";
+
+                // Display success message
+                new PNotify({
+                    title: 'Success!',
+                    text: 'You\'ve successfully updated a store category!',
+                    type: 'success'
+                });
+
+            })
+            .error(function(data) {
+
+                // Display error message
+                new PNotify({
+                    title: 'Oops!',
+                    text: 'Something went wrong during data processing!',
+                    type: 'error'
+                });
+
+                // Log error
+                console.log('Error: ' + data);
+
+            });
+
+        $scope.refreshCategory();
+
+    }; // end function updateCategory
+
 
     // Method calls upon controller initialization
     $scope.refreshCategory();

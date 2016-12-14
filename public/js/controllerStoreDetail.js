@@ -44,7 +44,6 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
 
     // Creates a new store based on the form fields
     $scope.createStore = function() {
-
         // Grabs all of the text box fields
         var storeData = {
             storeName: $scope.formData.txtStoreName,
@@ -75,4 +74,6 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
                 console.log('Error: ' + data);
             });
     };
+
+    
 });
