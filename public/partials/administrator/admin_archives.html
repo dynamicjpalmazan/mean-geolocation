@@ -1,0 +1,246 @@
+<div class="right_col" role="main">
+
+    <div class="">
+        <div class="clearfix"></div>
+        <br/>
+
+        <!-- Row -->
+        <div class="row">
+
+            <!-- Panel Body -->
+            <div class="panel-body">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <!-- Panel Title -->
+                        <div class="x_title">
+                            <h2> Archives </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- /Panel Title -->
+
+                        <!-- Panel Content -->
+                        <div class="x_content">
+
+                            <!-- Tab Panel -->
+                            <div class="" role="tabpanel">
+
+                                <!-- Tab Navigation -->
+                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a data-target="#tabStoreCategoryContent" role="tab" id="tabStoreCategory" data-toggle="tab" aria-expanded="true">Store Categories</a>
+                                    </li>
+                                    <li role="presentation" class="">
+                                        <a data-target="#tabStoreContent" role="tab" id="tabStore" data-toggle="tab" aria-expanded="false">Stores</a>
+                                    </li>
+                                    <li role="presentation" class="">
+                                        <a data-target="#tabUserContent" role="tab" id="tabUser" data-toggle="tab" aria-expanded="false">Users</a>
+                                    </li>
+                                </ul>
+                                <!-- /Tab Navigation -->
+
+                                <!-- Tab Content -->
+                                <div id="myTabContent" class="tab-content">
+
+                                    <!-- Store Category Tab -->
+                                    <div role="tabpanel" class="tab-pane fade active in" id="tabStoreCategoryContent" aria-labelledby="tabStoreCategory">
+
+                                        <!-- Store Category Tab Content  -->
+                                        <div class="x_content" style="height:30em; overflow: auto;"  ng-controller="controllerStoreCategory">
+
+                                            <!-- Store Category Table -->
+                                            <table datatable="ng" id="tblStoreCategory" class="table table-bordered table-hover table-responsive responsive-utilities jambo_table">
+
+                                                <!-- Store Category Table Head -->
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th hidden>ID</th>
+                                                        <th style="text-align: center;">Name </th>
+                                                        <th style="text-align: center;">Description </th>
+                                                        <th style="text-align: center;">
+                                                            <span class="nobr">Action</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- /Store Category Table Head -->
+
+                                                <!-- Store Category Table Body -->
+                                                <tbody>
+                                                    <tr ng-repeat="category in inactiveCategories">
+                                                        <td hidden>{{category._id}}</td>
+                                                        <td width="300">{{category.categoryName}}</td>
+                                                        <td>{{category.categoryDesc}}</td>
+                                                        <td width="180">
+                                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalRestoreCategory" ng-click="rowDataCategory(category)">
+                                                                  <span class="glyphicon glyphicon-repeat">&nbspRestore</span>
+                                                              </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <!-- /Store Category Table Body -->
+
+                                            </table>
+                                            <!-- /Store Category Table -->
+
+                                            <!-- Modals -->
+                                            <div id="modalRestoreCategory" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                          <span aria-hidden="true">×</span>
+                                                        </button>
+                                                            <h4 class="modal-title" id="myModalLabel">Restore Store Category</h4>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal form-label-left" name="restoreCategoryForm" novalidate>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                        <h5>Are you sure you'd like to restore this record?</h5>
+                                                                        <input type="hidden" class="form-control" id="txtRestoreCategoryID" placeholder="Category ID" ng-model="formData.txtRestoreCategoryID" required readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-dark" data-dismiss="modal">No</button>
+                                                            <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="restoreCategory();" ng-disabled="restoreCategoryForm.$invalid">Yes</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modals -->
+
+                                        </div>
+                                        <!-- /Store Category Tab Content -->
+
+                                    </div>
+                                    <!-- /Store Category Tab -->
+
+                                    <!-- Store Tab -->
+                                    <div role="tabpanel" class="tab-pane fade" id="tabStoreContent" aria-labelledby="tabStore">
+
+                                        <!-- Store Tab Content  -->
+                                        <div class="x_content" style="height:30em; overflow: auto;">
+
+                                            <!-- Store Table -->
+                                            <table datatable="ng" id="tblStore" class="table table-bordered table-hover table-responsive responsive-utilities jambo_table">
+
+                                                <!-- Store Table Head -->
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th hidden>ID</th>
+                                                        <th style="text-align: center;">Name </th>
+                                                        <th style="text-align: center;">Description </th>
+                                                        <th style="text-align: center;">
+                                                            <span class="nobr">Action</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- /Store Table Head -->
+
+                                                <!-- Store Table Body -->
+                                                <tbody>
+                                                    <tr ng-repeat="category in categories">
+                                                        <td hidden>{{category._id}}</td>
+                                                        <td width="300">{{category.categoryName}}</td>
+                                                        <td>{{category.categoryDesc}}</td>
+                                                        <td width="180">
+                                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalEditCategory" ng-click="rowDataCategory(category)">
+                                                                <span class="glyphicon glyphicon-repeat">&nbspRestore</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <!-- /Store Table Body -->
+
+                                            </table>
+                                            <!-- /Store Table -->
+
+                                        </div>
+                                        <!-- /Store Tab Content -->
+
+                                    </div>
+                                    <!-- /Store Tab -->
+
+                                    <!-- User Tab -->
+                                    <div role="tabpanel" class="tab-pane fade" id="tabUserContent" aria-labelledby="tabUser">
+
+                                        <!-- User Tab Content  -->
+                                        <div class="x_content" style="height:30em; overflow: auto;">
+
+                                            <!-- User Table -->
+                                            <table datatable="ng" id="tblUser" class="table table-bordered table-hover table-responsive responsive-utilities jambo_table">
+
+                                                <!-- User Table Head -->
+                                                <thead>
+                                                    <tr class="headings">
+                                                        <th hidden>ID</th>
+                                                        <th style="text-align: center;">Name </th>
+                                                        <th style="text-align: center;">Description </th>
+                                                        <th style="text-align: center;">
+                                                            <span class="nobr">Action</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- /User Table Head -->
+
+                                                <!-- User Table Body -->
+                                                <tbody>
+                                                    <tr ng-repeat="category in categories">
+                                                        <td hidden>{{category._id}}</td>
+                                                        <td width="300">{{category.categoryName}}</td>
+                                                        <td>{{category.categoryDesc}}</td>
+                                                        <td width="180">
+                                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalEditCategory" ng-click="rowDataCategory(category)">
+                                                                <span class="glyphicon glyphicon-repeat">&nbspRestore</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <!-- /User Table Body -->
+
+                                            </table>
+                                            <!-- /User Table -->
+
+                                        </div>
+                                        <!-- /User Tab Content -->
+
+                                    </div>
+                                    <!-- /User Tab -->
+
+                                </div>
+                                <!-- /Tab Content -->
+
+                            </div>
+                            <!-- /Tab Panel -->
+
+                        </div>
+                        <!-- /Panel Content -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- /Panel Body -->
+
+        </div>
+        <!-- /Row -->
+
+    </div>
+
+    <!-- Footer Content -->
+    <footer>
+        <div class="">
+            <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
+                <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+            </p>
+        </div>
+        <div class="clearfix"></div>
+    </footer>
+    <!-- /Footer Content -->
+
+</div>

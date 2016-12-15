@@ -8,7 +8,8 @@ var StoreSchema = new Schema({
     storeAddress: {type: String, required: true},
     storeLocation: {type: [Number], required: true}, // [Long, Lat]
     created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    updated_at: {type: Date, default: Date.now},
+    status: {type: Number, default: 1}
 });
 
 // Sets the created_at parameter equal to the current time

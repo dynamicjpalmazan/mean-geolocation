@@ -18,7 +18,25 @@ module.exports = function(app) {
     app.get('/stores', function(req, res) {
 
         // Uses Mongoose schema to run the search (empty conditions)
-        var query = Store.find({});
+        var query = Store.find({
+            status: 1
+        });
+        query.exec(function(err, stores) {
+            if (err)
+                res.send(err);
+
+            // If no errors are found, it responds with a JSON of all stores
+            res.json(stores);
+        });
+    });
+
+    // Retrieve records for all inactive stores in the db
+    app.get('/inactive-stores', function(req, res) {
+
+        // Uses Mongoose schema to run the search (empty conditions)
+        var query = Store.find({
+            status: 0
+        });
         query.exec(function(err, stores) {
             if (err)
                 res.send(err);
@@ -52,11 +70,29 @@ module.exports = function(app) {
 
     // GET Routes
     // --------------------------------------------------------
-    // Retrieve records for all categories in the db
-    app.get('/categories', function(req, res) {
+    // Get all active categories
+    app.get('/active-categories', function(req, res) {
 
         // Uses Mongoose schema to run the search (empty conditions)
-        var query = Category.find({});
+        var query = Category.find({
+            status: 1
+        });
+        query.exec(function(err, categories) {
+            if (err)
+                res.send(err);
+
+            // If no errors are found, it responds with a JSON of all categories
+            res.json(categories);
+        });
+    });
+
+    // Get all inactive  categories
+    app.get('/inactive-categories', function(req, res) {
+
+        // Uses Mongoose schema to run the search (empty conditions)
+        var query = Category.find({
+            status: 0
+        });
         query.exec(function(err, categories) {
             if (err)
                 res.send(err);
@@ -98,6 +134,38 @@ module.exports = function(app) {
             if (err) throw err;
 
             // we have the updated user returned to us
+            res.json(req.body);
+        });
+
+    });
+
+    // Provides method for deactivating categories in the db
+    app.post('/categoryde', function(req, res) {
+
+        var categID = req.body._id.replace(/\"/g, "");
+
+        Category.findByIdAndUpdate(categID, {
+            status: 0
+        }, function(err, category) {
+            if (err) throw err;
+
+            // we have the updated category returned to us
+            res.json(req.body);
+        });
+
+    });
+
+    // Provides method for restoring categories in the db
+    app.post('/categoryre', function(req, res) {
+
+        var categID = req.body._id.replace(/\"/g, "");
+
+        Category.findByIdAndUpdate(categID, {
+            status: 1
+        }, function(err, category) {
+            if (err) throw err;
+
+            // we have the restored category returned to us
             res.json(req.body);
         });
 

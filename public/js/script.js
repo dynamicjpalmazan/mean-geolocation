@@ -43,8 +43,8 @@
      })
 
      // route for the contact page
-     .when('/contact', {
-         templateUrl: 'partials/administrator/admin_storedetail.html',
+     .when('/archive', {
+         templateUrl: 'partials/administrator/admin_archives.html',
          controller: 'contactController'
      })
 
@@ -100,9 +100,8 @@
 
  scotchApp.controller('storeCategoryController', function($scope) {
 
-
  });
 
  scotchApp.controller('contactController', function($scope) {
-     $scope.message = 'Contact us! JK. This is just a demo.';
+
  });

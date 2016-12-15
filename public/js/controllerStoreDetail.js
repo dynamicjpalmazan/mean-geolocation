@@ -32,7 +32,7 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
 
     // Functions
     // ----------------------------------------------------------------------------
-    // Get coordinates based on mouse click. When a click event is detected....
+    // Get coordinates based on mouse click.
     $rootScope.$on("clicked", function() {
 
         // Run the gservice functions associated with identifying coordinates
@@ -42,7 +42,37 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
         });
     });
 
-    // Creates a new store based on the form fields
+    // Read all active stores
+    $scope.getActiveStore= function() {
+
+        // Perform an AJAX call to get all of the records in the db.
+        $http.get('/stores')
+            .success(function(response) {
+
+                $scope.activeStores = response;
+
+            }).error(function() {
+
+            });
+
+    }; // end function getActiveStore
+
+    // Read all archived stores
+    $scope.getInactiveStore = function() {
+
+        // Perform an AJAX call to get all of the records in the db.
+        $http.get('/inactive-stores')
+            .success(function(response) {
+
+                $scope.inactiveStores = response;
+
+            }).error(function() {
+
+            });
+
+    }; // end function getInactiveStore
+
+    // Create a new store
     $scope.createStore = function() {
         // Grabs all of the text box fields
         var storeData = {
@@ -75,5 +105,21 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
             });
     };
 
-    
+    // Interval-based Functions
+    // ----------------------------------------------------------------------------
+    // Refresh table data (active and inactive stores) every 10secs
+    // $interval(function() {
+    //
+    //     $scope.getActiveStore();
+    //     $scope.getInactiveStore();
+    //
+    // }, 10000);
+
+
+    // initialization Functions
+    // ----------------------------------------------------------------------------
+    // Get active and inactive stores
+    // $scope.getActiveStore();
+    // $scope.getInactiveStore();
+
 });
