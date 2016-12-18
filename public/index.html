@@ -1,69 +1,43 @@
 <!DOCTYPE html>
 <html ng-app="scotchApp">
 
+<!-- Index Head -->
 <head>
 
     <title>Store Locator</title>
 
-    <!-- Angular Scripts & CSS w/ DataTables | DO NOT MODIFY-->
-    <script src="/bootstrap/js/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-    <script src="/bootstrap/js/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
-    <link rel="stylesheet" href="../bower_components/angular-datatables/dist/css/angular-datatables.css">
-
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/bootstrap/fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/bootstrap/css/animate.min.css" rel="stylesheet">
-
-    <!-- Custom styling plus plugins -->
-    <link href="/bootstrap/css/custom.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/maps/jquery-jvectormap-2.0.3.css" />
-    <link href="/bootstrap/css/icheck/flat/green.css" rel="stylesheet" />
-    <link href="/bootstrap/css/floatexamples.css" rel="stylesheet" type="text/css" />
-
-    <!-- Modernizr -->
-    <script src="../bower_components/modernizr/bin/modernizr"></script>
-
-    <!-- JS Source -->
-    <script src="../bower_components/jquery/src/jquery.js"></script>
-    <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
-
-    <!-- Google Maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAX4bdwEjv-QwEwCa9eYdIvjuPBAz6SO54">
-    </script>
-    <script src="/bootstrap/js/GoogleMapping.js"></script>
-
-    <script src="/bootstrap/js/nprogress.js"></script>
-
-    <!-- MEAN Scripts -->
-    <script src="/js/script.js"></script>
-    <script src="/js/gservice.js"></script>
-    <script src="/js/controllerStoreCategory.js"></script>
-    <script src="/js/controllerStoreDetail.js"></script>
+    <!-- Imports -->
+    <link rel="import" href="/component/components.html">
+    <!-- /Imports -->
 
 </head>
+<!-- /Index Head -->
 
-
+<!-- Index Body -->
 <body class="nav-md" ng-controller="mainController" style="{{bodyClass ? bodyClass : 'background:#F7F7F7'}}">
 
-    <!-- container body -->
+    <!-- Index Body Container -->
     <div class="container body">
 
-        <!-- main container -->
+        <!-- Index Main Container -->
         <div class="main_container">
 
-            <!-- administrator navigation -->
+            <!-- Index Administrator Navigation -->
             <div class="col-md-3 left_col" ng-cloak ng-show="location !==  '/' && location !== '/register'">
                 <div class="left_col scroll-view">
 
+                    <!-- Administrator SideBar Title -->
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-compass"></i> <span>Store Finder!</span></a>
+                        <a href="#dashx" class="site_title">
+                            <i class="fa fa-compass"></i>
+                            <span>Store Locator</span>
+                        </a>
                     </div>
+                    <!-- /Administrator SideBar Title -->
+
                     <div class="clearfix"></div>
 
-                    <!-- menu prile quick info -->
+                    <!-- Administrator SideBar Profile -->
                     <div class="profile">
                         <div class="profile_pic">
                             <img src="/bootstrap/images/profile.jpg" alt="..." class="img-circle profile_img">
@@ -73,21 +47,31 @@
                             <span>Administrator</span>
                         </div>
                     </div>
-                    <!-- /menu prile quick info -->
+                    <!-- /Administrator SideBar Profile -->
 
                     <br />
 
-                    <!-- sidebar menu -->
+                    <!-- Administrator SideBar Menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
-                            <h3>Genera</h3>
+                            <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li>
-                                    <a ng-click="changeView('/dashx')"><i class="fa fa-home"></i> Dashboard </a>
-                                </li>
 
-                                <li><a><i class="fa fa-wrench"></i> Maintenance <span class="fa fa-chevron-down"></span></a>
+                                <!-- Administrator Dashboard -->
+                                <li>
+                                    <a ng-click="changeView('/dashx')">
+                                        <i class="fa fa-home"></i> Dashboard
+                                    </a>
+                                </li>
+                                <!-- /Administrator Dashboard -->
+
+                                <!-- Administrator Maintenance -->
+                                <li>
+                                    <a>
+                                        <i class="fa fa-wrench"></i> Maintenance
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
                                             <a href="#store_categories"> Store Categories </a>
@@ -100,8 +84,14 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <!-- /Administrator Maintenance -->
 
-                                <li><a><i class="fa fa-cogs"></i> Utilities <span class="fa fa-chevron-down"></span></a>
+                                <!-- Administrator Utilities -->
+                                <li>
+                                    <a>
+                                        <i class="fa fa-cogs"></i> Utilities
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li>
                                             <a href="#acct_setting"> Account Setting </a>
@@ -111,13 +101,14 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <!-- /Administrator Utilities -->
 
                             </ul>
                         </div>
                     </div>
-                    <!-- /sidebar menu -->
+                    <!-- /Administrator SideBar Menu -->
 
-                    <!-- /menu footer buttons -->
+                    <!-- /Administrator SideBar Footer Buttons -->
                     <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" title="Settings">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -132,7 +123,8 @@
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
-                    <!-- /menu footer buttons -->
+                    <!-- /Administrator SideBar Footer Buttons -->
+
                 </div>
             </div>
 
@@ -141,7 +133,9 @@
                 <div class="nav_menu">
                     <nav class="" role="navigation">
                         <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            <a id="menu_toggle">
+                              <i class="fa fa-bars"></i>
+                            </a>
                         </div>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -171,57 +165,19 @@
                     </nav>
                 </div>
             </div>
-            <!-- /administrator navigation -->
+            <!-- /Index Administrator Navigation -->
 
             <!-- page content -->
             <div ng-cloak ng-view></div>
             <!-- /page content -->
 
         </div>
-        <!--/end main container-->
+        <!--/Index Main Container -->
 
     </div>
-    <!--/end container body-->
+    <!--/Index Body Container-->
 
-    <!--START SCRIPTS-->
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- gauge js -->
-    <script type="text/javascript" src="/bootstrap/js/gauge/gauge.min.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/gauge/gauge_demo.js"></script>
-    <!-- bootstrap progress js -->
-    <script src="/bootstrap/js/progressbar/bootstrap-progressbar.min.js"></script>
-    <script src="/bootstrap/js/nicescroll/jquery.nicescroll.min.js"></script>
-    <!-- icheck -->
-    <script src="/bootstrap/js/icheck/icheck.min.js"></script>
-    <!-- daterangepicker -->
-    <script type="text/javascript" src="/bootstrap/js/moment.min.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/datepicker/daterangepicker.js"></script>
-    <!-- chart js -->
-    <script src="/bootstrap/js/chartjs/chart.min.js"></script>
-
-    <script src="/bootstrap/js/custom.js"></script>
-
-    <!-- flot js -->
-    <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.orderBars.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.time.min.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/date.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.spline.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/curvedLines.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/flot/jquery.flot.resize.js"></script>
-
-    <!-- PNotify -->
-    <script type="text/javascript" src="/bootstrap/js/notify/pnotify.core.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/notify/pnotify.buttons.js"></script>
-    <script type="text/javascript" src="/bootstrap/js/notify/pnotify.nonblock.js"></script>
-
-    <!-- pace -->
-    <script src="/bootstrap/js/pace/pace.min.js"></script>
-    <!--END SCRIPTS-->
 </body>
+<!-- /Index Body -->
 
 </html>

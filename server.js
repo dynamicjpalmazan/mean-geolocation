@@ -16,6 +16,7 @@ mongoose.connect("mongodb://localhost/StoreLocator");
 // Logging and Parsing
 app.use(express.static(__dirname + '/public'));                 // sets the static files location to public
 app.use('/bower_components',  express.static(__dirname + '/bower_components')); // Use BowerComponents
+app.use('/app',  express.static(__dirname + '/app')); // Use 'app'
 app.use(morgan('dev'));                                         // log with Morgan
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.urlencoded({extended: true}));               // parse application/x-www-form-urlencoded
@@ -25,7 +26,7 @@ app.use(methodOverride());
 
 // Routes
 // ------------------------------------------------------
-require('./app/routes.js')(app);
+require('./app/server/routes/routeMaster.js')(app);
 
 // Listen
 // -------------------------------------------------------

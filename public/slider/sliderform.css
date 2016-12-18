@@ -1,0 +1,56 @@
+#feedback {
+	position: fixed;
+	right: 0;
+	top: 0;
+	height: 450px;
+	margin-right: -3px;
+	margin-top: 130px;
+}
+
+#feedback-form {
+	float: right;
+	width: 300px;
+	height: 100%;
+	overflow: auto;
+	z-index: 1000;
+	padding-right: 5px;
+	padding-left: 10px;
+	background-clip: 'padding-box';
+	border: 1px solid rgba(0,0,0,.2);
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+#feedback-tab {
+	float: left;
+	color: #fff;
+	font-size: 20px;
+	cursor: pointer;
+	text-align: center;
+	width: 120px;
+	height: 42px;
+	background-color: rgba(0,0,0,0.5);
+	margin-top: 40px;
+	margin-right: -42px;
+	padding-top: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+
+#feedback-tab:hover {
+	background-color: rgba(0,0,0,0.4);
+}
+
+#feedback-form textarea {
+	resize: none;
+}

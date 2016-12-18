@@ -12,3 +12,13 @@ function initMap() {
         map: map
     });
 }
+
+
+function toggleList() {
+
+    $("#dvListStore").hide();
+    $(".toggleList").on("click", function() {
+        $("#dvAddStore, #dvListStore").toggle();
+    });
+
+}

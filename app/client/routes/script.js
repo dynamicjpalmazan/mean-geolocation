@@ -1,6 +1,6 @@
  // create the module and name it scotchApp
  // also include ngRoute for all our routing needs
- var scotchApp = angular.module('scotchApp', ['ngRoute', 'controllerStoreDetail', 'controllerStoreCategory', 'geolocation', 'gservice', 'datatables']);
+ var scotchApp = angular.module('scotchApp', ['ngRoute', 'controllerStoreDetail', 'controllerStoreCategory', 'controllerStoreQuery', 'geolocation', 'gservice', 'datatables']);
 
  // configure our routes
  scotchApp.config(function($routeProvider) {
@@ -89,19 +89,30 @@
  scotchApp.controller('dashxController', function($scope) {
 
      initMap();
+     slider();
 
  });
 
  scotchApp.controller('storeDetailController', function($scope) {
 
+     // Initialize map
      initMap();
+
+     // Hide store list div | toggle on-click
+     toggleList();
+
 
  });
 
  scotchApp.controller('storeCategoryController', function($scope) {
 
+
+   //akjhdh
+
  });
 
  scotchApp.controller('contactController', function($scope) {
+
+   //dlfsdjf
 
  });

@@ -21,7 +21,7 @@ angular.module('gservice', [])
         // Functions
         // --------------------------------------------------------------
         // Refresh the Map with new data. Function will take new latitude and longitude coordinates.
-        googleMapService.refresh = function(latitude, longitude) {
+        googleMapService.refresh = function(latitude, longitude, filteredResults) {
 
             // Clears the holding array of locations
             locations = [];
@@ -30,15 +30,29 @@ angular.module('gservice', [])
             selectedLat = latitude;
             selectedLong = longitude;
 
-            // Perform an AJAX call to get all of the records in the db.
-            $http.get('/stores').success(function(response) {
+            // If filtered results are provided in the refresh() call...
+            if (filteredResults) {
 
-                // Convert the results into Google Map Format
-                locations = convertToMapPoints(response);
+                // Then convert the filtered results into map points.
+                locations = convertToMapPoints(filteredResults);
 
-                // Then initialize the map.
-                initialize(latitude, longitude);
-            }).error(function() {});
+                // Then, initialize the map -- noting that a filter was used (to mark icons yellow)
+                initialize(latitude, longitude, true);
+
+            } else {
+
+                // Perform an AJAX call to get all of the records in the db.
+                $http.get('/active-stores').success(function(response) {
+
+                    // Convert the results into Google Map Format
+                    locations = convertToMapPoints(response);
+
+                    // Then initialize the map.
+                    initialize(latitude, longitude);
+                }).error(function() {});
+
+            }
+
         };
 
         // Private Inner Functions
@@ -57,6 +71,7 @@ angular.module('gservice', [])
                 var contentString =
                     '<p><b>Store Name</b>: ' + store.storeName +
                     '<br><b>Address</b>: ' + store.storeAddress +
+                    '<br><b>Category</b>: ' + store.storeCategory +
                     '</p>';
 
                 // Converts each of the JSON records into Google Maps Location format (Note [Lat, Lng] format).
@@ -75,7 +90,7 @@ angular.module('gservice', [])
         };
 
         // Initializes the map
-        var initialize = function(latitude, longitude) {
+        var initialize = function(latitude, longitude, filter) {
 
             // Uses the selected lat, long as starting point
             var myLatLng = {
@@ -93,13 +108,20 @@ angular.module('gservice', [])
                 });
             }
 
+            // If a filter was used set the icons yellow, otherwise blue
+            if (filter) {
+                icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+            } else {
+                icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+            }
+
             // Loop through each location in the array and place a marker
             locations.forEach(function(n, i) {
                 var marker = new google.maps.Marker({
                     position: n.latlon,
                     map: map,
                     title: "Big Map",
-                    icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                    icon: icon,
                 });
 
                 // For each marker created, add a listener that checks for clicks

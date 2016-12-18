@@ -6,6 +6,7 @@ var Schema      = mongoose.Schema;
 var StoreSchema = new Schema({
     storeName: {type: String, required: true},
     storeAddress: {type: String, required: true},
+    storeCategory: {type: String, required: true},
     storeLocation: {type: [Number], required: true}, // [Long, Lat]
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now},
