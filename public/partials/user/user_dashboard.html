@@ -1,0 +1,98 @@
+<!-- Containing Div -->
+<div class="" ng-controller="controllerStoreDetail">
+
+    <!-- Row -->
+    <div class="row">
+
+        <!-- Map Panel Body -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel-body">
+                <div class="x_panel">
+
+                    <!-- Map Panel Title -->
+                    <div class="x_title">
+                        <h2> Map </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <!-- /Map Panel Title -->
+
+                    <!-- Map Panel Content -->
+                    <div class="x_content">
+                        <div id="map" style="width:450; height:460px"></div>
+                    </div>
+                    <!-- /Map Panel Content -->
+
+                </div>
+            </div>
+        </div>
+        <!-- /Map Panel Body -->
+
+
+        <!-- Map Filter Sliding Form -->
+        <div id="feedback" ng-controller="controllerStoreQuery">
+            <div id="feedback-form" style='display:none;' class="col-xs-12 col-md-12 panel panel-default">
+
+                <div class="x_title">
+                    <h2> Map Filters </h2>
+                    <div class="clearfix"></div>
+                </div>
+
+                <br/>
+
+                <form name="mapFilterForm" novalidate>
+
+                    <div class="col-md-1 col-xs-1"></div>
+
+                    <div class="col-md-10 col-xs-10">
+
+                        <div class="form-group" ng-controller="controllerStoreCategory">
+                            <label for="txtStoreCategory">Category*</label>
+                            <select class="form-control select" required id="txtStoreCategory" ng-model="formData.txtStoreCategory">
+                                <option ng-repeat="category in categories" values="{{category.categoryName}}">
+                                  {{category.categoryName}}
+                                </option>
+                              </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtLatitude">Latitude*</label>
+                            <input type="text" id="txtLatitude" class="form-control" value="39.500" ng-model="formData.txtLatitude" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtLongitude">Longitude*</label>
+                            <input type="text" id="txtLongitude" class="form-control" value="-98.350" ng-model="formData.txtLongitude" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtLongitude">Radius in miles*</label>
+                            <input type="number" id="txtRadius" class="form-control" ng-model="formData.txtRadius" min="1" required>
+                            <br/>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6">
+                                <button type="submit" class="btn btn-dark btn-block" ng-click="queryUsers()" ng-disabled="mapFilterForm.$invalid">Filter Map</button>
+                            </div>
+
+                            <div class="col-md-6 col-xs-6">
+                                <button type="submit" class="btn btn-dark btn-block" ng-click="clearFilter()">Clear Filters</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-1 col-xs-1"></div>
+
+                </form>
+            </div>
+            <!-- <div id="feedback-tab">Map Filters</div> -->
+            <div id="feedback-tab">&nbsp&nbsp<span class="glyphicon glyphicon-cog"></span>&nbsp&nbsp&nbsp&nbsp</div>
+        </div>
+        <!-- /Map Filter Sliding Form -->
+
+    </div>
+    <!-- /Row -->
+
+</div>
+<!-- /Containing Div -->

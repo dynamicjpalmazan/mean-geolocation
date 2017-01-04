@@ -13,4 +13,7 @@ module.exports = function(app) {
     // Require store query route file
     require('./routeStoreQuery')(app);
 
+    // Require user detail route file
+    require('./routeUserDetail')(app);
+
 };

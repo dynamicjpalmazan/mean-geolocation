@@ -74,11 +74,11 @@
 
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
-                                    <button type="submit" class="btn btn-dark btn-block" ng-click="queryUsers()" ng-disabled="mapFilterForm.$invalid">Submit</button>
+                                    <button type="submit" class="btn btn-dark btn-block" ng-click="queryUsers()" ng-disabled="mapFilterForm.$invalid">Filter Map</button>
                                 </div>
 
                                 <div class="col-md-6 col-xs-6">
-                                    <button type="submit" class="btn btn-dark btn-block" ng-click="changeView('/dashx')">Clear</button>
+                                    <button type="submit" class="btn btn-dark btn-block" ng-click="clearFilter()">Clear Filters</button>
                                 </div>
                             </div>
 
@@ -88,7 +88,8 @@
 
                     </form>
                 </div>
-                <div id="feedback-tab">Map Filters</div>
+                <!-- <div id="feedback-tab">Map Filters</div> -->
+                <div id="feedback-tab">&nbsp&nbsp<span class="glyphicon glyphicon-cog"></span>&nbsp&nbsp&nbsp&nbsp</div>
             </div>
             <!-- /Map Filter Sliding Form -->
 

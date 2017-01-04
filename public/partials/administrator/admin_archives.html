@@ -74,7 +74,7 @@
                                                         <td>{{category.categoryDesc}}</td>
                                                         <td width="180">
                                                             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalRestoreCategory" ng-click="rowDataCategory(category)">
-                                                                  <span class="glyphicon glyphicon-repeat">&nbspRestore</span>
+                                                                  <span class="glyphicon glyphicon-repeat"></span>&nbspRestore
                                                               </button>
                                                         </td>
                                                     </tr>
@@ -152,10 +152,10 @@
                                                         <td hidden>{{store._id}}</td>
                                                         <td width="200">{{store.storeName}}</td>
                                                         <td width="250">{{store.storeAddress}}</td>
-                                                        <td width="150">Category</td>
+                                                        <td width="150">{{store.storeCategory}}</td>
                                                         <td width="180">
                                                             <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalRestoreStore" ng-click="rowDataStore(store)">
-                                                                <span class="glyphicon glyphicon-repeat">&nbspRestore</span>
+                                                                <span class="glyphicon glyphicon-repeat"></span>&nbspRestore
                                                             </button>
                                                         </td>
                                                     </tr>
@@ -205,7 +205,8 @@
                                     <!-- /Store Tab -->
 
                                     <!-- User Tab -->
-                                    <div role="tabpanel" class="tab-pane fade" id="tabUserContent" aria-labelledby="tabUser">
+                                    <div role="tabpanel" class="tab-pane fade" id="tabUserContent" aria-labelledby="tabUser"
+                                    ng-controller="controllerUserDetail">
 
                                         <!-- User Tab Content  -->
                                         <div class="x_content" style="height:30em; overflow: auto;">
@@ -217,8 +218,9 @@
                                                 <thead>
                                                     <tr class="headings">
                                                         <th hidden>ID</th>
-                                                        <th style="text-align: center;">Name </th>
-                                                        <th style="text-align: center;">Description </th>
+                                                        <th style="text-align: center;">First Name </th>
+                                                        <th style="text-align: center;">Last Name </th>
+                                                        <th style="text-align: center;">Email </th>
                                                         <th style="text-align: center;">
                                                             <span class="nobr">Action</span>
                                                         </th>
@@ -228,13 +230,14 @@
 
                                                 <!-- User Table Body -->
                                                 <tbody>
-                                                    <tr ng-repeat="category in categories">
-                                                        <td hidden>{{category._id}}</td>
-                                                        <td width="300">{{category.categoryName}}</td>
-                                                        <td>{{category.categoryDesc}}</td>
+                                                    <tr ng-repeat="user in inactiveUsers">
+                                                        <td hidden>{{user._id}}</td>
+                                                        <td width="300">{{user.userFirstName}}</td>
+                                                        <td>{{user.userLastName}}</td>
+                                                        <td>{{user.userEmail}}</td>
                                                         <td width="180">
-                                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalEditCategory" ng-click="rowDataCategory(category)">
-                                                                <span class="glyphicon glyphicon-repeat">&nbspRestore</span>
+                                                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalRestoreUser" ng-click="rowDataUser(user)">
+                                                                <span class="glyphicon glyphicon-repeat"></span>&nbspRestore
                                                             </button>
                                                         </td>
                                                     </tr>
@@ -243,6 +246,39 @@
 
                                             </table>
                                             <!-- /User Table -->
+
+                                            <!-- Modals -->
+                                            <div id="modalRestoreUser" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                          <span aria-hidden="true">×</span>
+                                                        </button>
+                                                            <h4 class="modal-title" id="myModalLabel">Restore User</h4>
+                                                        </div>
+
+                                                        <div class="modal-body">
+                                                            <form class="form-horizontal form-label-left" name="restoreUserForm" novalidate>
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                        <h5>Are you sure you'd like to restore this record?</h5>
+                                                                        <input type="hidden" class="form-control" id="txtRestoreUserID" placeholder="Store ID" ng-model="formData.txtRestoreUserID" required readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-dark" data-dismiss="modal">No</button>
+                                                            <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="restoreUser();" ng-disabled="restoreUserForm.$invalid">Yes</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Modals -->
 
                                         </div>
                                         <!-- /User Tab Content -->

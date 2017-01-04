@@ -55,9 +55,8 @@ controllerStoreQuery.controller('controllerStoreQuery', function($scope, $log, $
                 $scope.queryCount = queryResults.length;
 
                 // Clear formData
-                $scope.formData.txtLongitude = "";
-                $scope.formData.txtLatitude = "";
                 $scope.formData.txtRadius = "";
+                $scope.formData.txtStoreCategory = "";
 
             })
             .error(function(queryResults) {
@@ -68,7 +67,7 @@ controllerStoreQuery.controller('controllerStoreQuery', function($scope, $log, $
     $scope.clearFilter = function() {
 
       // Clear map filters
-      gservice.refresh(queryBody.latitude, queryBody.longitude, false);
+      gservice.refresh($scope.formData.txtLatitude, $scope.formData.txtLongitude);
 
     }
 

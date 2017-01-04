@@ -31,20 +31,20 @@
 	font-size: 20px;
 	cursor: pointer;
 	text-align: center;
-	width: 120px;
-	height: 42px;
+	/*width: 120px;*/
+	display: inline;
 	background-color: rgba(0,0,0,0.5);
-	margin-top: 40px;
-	margin-right: -42px;
+	margin-top: 22px;
+	margin-right: -4px;
 	padding-top: 5px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	-webkit-transform: rotate(270deg);
+	/*-webkit-transform: rotate(270deg);
 	-moz-transform: rotate(270deg);
 	-ms-transform: rotate(270deg);
 	-o-transform: rotate(270deg);
-	transform: rotate(270deg);
+	transform: rotate(270deg);*/
 }
 
 #feedback-tab:hover {

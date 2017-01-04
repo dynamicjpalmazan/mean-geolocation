@@ -1,14 +1,24 @@
  // create the module and name it scotchApp
  // also include ngRoute for all our routing needs
- var scotchApp = angular.module('scotchApp', ['ngRoute', 'controllerStoreDetail', 'controllerStoreCategory', 'controllerStoreQuery', 'geolocation', 'gservice', 'datatables']);
+ var scotchApp = angular.module('scotchApp', ['ngRoute',
+     'controllerStoreDetail', 'controllerStoreCategory',
+     'controllerStoreQuery', 'controllerUserDetail',
+     'geolocation', 'gservice', 'datatables'
+ ]);
 
  // configure our routes
  scotchApp.config(function($routeProvider) {
      $routeProvider
 
-     // route for the login page
+     // route for the user dashboard page
          .when('/', {
-         templateUrl: 'partials/main/login.html',
+         templateUrl: 'partials/user/user_dashboard.html',
+         controller: 'mainController'
+     })
+
+     // route for the user store-list page
+     .when('/store-list', {
+         templateUrl: 'partials/user/user_stores.html',
          controller: 'mainController'
      })
 
@@ -18,31 +28,31 @@
          controller: 'mainController'
      })
 
-     // route for the home page
+     // route for the admin home page
      .when('/dashx', {
          templateUrl: 'partials/administrator/admin_dashboard.html',
          controller: 'dashxController'
      })
 
-     // route for the about page
+     // route for the store category maintenance page
      .when('/store_categories', {
          templateUrl: 'partials/administrator/admin_storecategory.html',
          controller: 'storeCategoryController'
      })
 
-     // route for the about page
+     // route for the store detail maintenance page
      .when('/store_details', {
          templateUrl: 'partials/administrator/admin_storedetail.html',
          controller: 'storeDetailController'
      })
 
-     // route for the about page
+     // route for the user detail maintenance page
      .when('/user_details', {
-         templateUrl: 'partials/administrator/admin_storecategory.html',
-         controller: 'storeCategoryController'
+         templateUrl: 'partials/administrator/admin_userdetail.html',
+         controller: 'userDetailController'
      })
 
-     // route for the contact page
+     // route for the archive page
      .when('/archive', {
          templateUrl: 'partials/administrator/admin_archives.html',
          controller: 'contactController'
@@ -50,7 +60,7 @@
 
      // route back to login page
      .otherwise({
-         redirectTo: '/dashx'
+         redirectTo: '/dashx' // change to login '/'
      });
 
  });
@@ -59,10 +69,12 @@
  scotchApp.controller('mainController', ['$scope', '$location', '$window',
      function($scope, $location, $window) {
 
+         slider();
+
          // retrieve 'location'
          $scope.location = $location.path();
 
-         if ($location.path() === '/' || $location.path() === '/register') {
+         if ($location.path() === '/' || $location.path() === '/store-list') {
 
              $scope.bodyClass = 'background:#F7F7F7';
 
@@ -107,12 +119,18 @@
  scotchApp.controller('storeCategoryController', function($scope) {
 
 
-   //akjhdh
+     //akjhdh
+
+ });
+
+ scotchApp.controller('userDetailController', function($scope) {
+
+     //akjhdh
 
  });
 
  scotchApp.controller('contactController', function($scope) {
 
-   //dlfsdjf
+     //dlfsdjf
 
  });

@@ -1,0 +1,326 @@
+<div ng-controller="controllerUserDetail">
+
+    <!-- Right Col Div -->
+    <div class="right_col" role="main">
+
+        <!-- Containing Div -->
+        <div class="">
+
+            <!-- Row -->
+            <div class="row">
+
+                <!-- Store Categoy Panel Body -->
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <br>
+                    <div class="x_panel">
+
+                        <!-- User Panel Title -->
+                        <div class="x_title">
+                            <h2>User List</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-dark" data-toggle="modal" data-target="#modalAddUser"><span class="fa fa-plus"></span></button>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- /User Panel Title -->
+
+                        <!-- User Panel Content -->
+                        <div class="x_content" style="height:30em; overflow: auto;">
+
+                            <!-- User Table -->
+                            <table datatable="ng" id="example" class="table table-bordered table-hover table-responsive responsive-utilitie jambo_table">
+
+                                <!-- User Table Head -->
+                                <thead>
+                                    <tr class="headings">
+                                        <th hidden>ID</th>
+                                        <th style="text-align: center;">First Name </th>
+                                        <th style="text-align: center;">Last Name </th>
+                                        <th style="text-align: center;">Username </th>
+                                        <th style="text-align: center;">Email </th>
+                                        <th style="text-align: center;">
+                                            <span class="nobr">Action</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <!-- /User Table Head -->
+
+                                <!-- User Table Body -->
+                                <tbody>
+                                    <tr ng-repeat="user in users">
+                                        <td hidden>{{user._id}}</td>
+                                        <td width="175">{{user.userFirstName}}</td>
+                                        <td width="175">{{user.userLastName}}</td>
+                                        <td width="150">{{user.userAlias}}</td>
+                                        <td width="150">{{user.userEmail}}</td>
+                                        <td width="180">
+                                            <div class="btn-group">
+                                                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalEditUser" ng-click="rowDataUser(user)">
+                                                  <span class="glyphicon glyphicon-pencil"></span>&nbspEdit
+                                                </button>
+                                                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#modalDeleteUser" ng-click="rowDataUser(user)">Delete&nbsp
+                                                  <span class="glyphicon glyphicon-trash"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <!-- /User Table Body -->
+
+                            </table>
+                            <!-- /User Table -->
+
+                        </div>
+                        <!-- /User Panel Content -->
+
+                    </div>
+                </div>
+                <!-- /User Panel Body -->
+
+            </div>
+            <!-- /Row -->
+
+        </div>
+        <!-- /Containing Div -->
+
+        <!-- Footer Content -->
+        <footer>
+            <div class="">
+                <p class="pull-right">Gentelella Alela! a Bootstrap 3 template by <a>Kimlabs</a>. |
+                    <span class="lead"> <i class="fa fa-paw"></i> Gentelella Alela!</span>
+                </p>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /Footer Content -->
+
+    </div>
+    <!-- /Right Col Div -->
+
+
+    <!-- Modals -->
+    <!-- Add User Modal -->
+    <div id="modalAddUser" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Add User Modal Content -->
+            <div class="modal-content">
+
+                <!-- Add User Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">New User</h4>
+                </div>
+                <!-- /Add User Modal Header -->
+
+
+                <!-- Add User Modal Body -->
+                <div class="modal-body">
+
+                    <!-- Add User Modal Form -->
+                    <form class="form-horizontal form-label-left" name="addUserForm" novalidate>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">First Name*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" id="txtUserFirstName" placeholder="First Name" ng-model="formData.txtUserFirstName" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Last Name*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" id="txtUserLastName" placeholder="Last Name" ng-model="formData.txtUserLastName" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Username*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="text" class="form-control" id="txtUserAlias" placeholder="username" ng-model="formData.txtUserAlias" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Email*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="email" class="form-control" id="txtUserEmail" placeholder="sample_email@email.com" ng-model="formData.txtUserEmail" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-3 col-xs-12">Password*</label>
+                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                <input type="password" class="form-control" id="txtUserPassword" ng-model="formData.txtUserPassword" required>
+                            </div>
+                        </div>
+
+                    </form>
+                    <!-- /Add User Modal Form -->
+
+                </div>
+                <!-- /Add User Modal Body -->
+
+                <!-- Add User Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="createUser();" ng-disabled="addUserForm.$invalid">Save</button>
+                </div>
+                <!-- /Add User Modal Footer -->
+
+            </div>
+            <!-- /Add User Modal Content -->
+
+        </div>
+    </div>
+    <!-- /Add User Modal -->
+
+    <!-- Edit User Modal -->
+    <div id="modalEditUser" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Edit User Modal Content -->
+            <div class="modal-content">
+
+                <!-- Edit User Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+                </div>
+                <!-- /Edit User Modal Header -->
+
+                <!-- Edit User Modal Body -->
+                <div class="modal-body">
+
+                    <!-- Edit User Modal Form -->
+                    <form class="form-horizontal form-label-left" name="editUserForm" novalidate>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-4 col-xs-12">First Name*</label>
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <input type="hidden" class="form-control" id="txtEditUserID" placeholder="User ID" ng-model="formData.txtEditUserID" required readonly>
+                                <input type="text" class="form-control" id="txtEditUserFirstName" placeholder="First Name" ng-model="formData.txtEditUserFirstName" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-4 col-xs-12">Last Name*</label>
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control" id="txtEditUserLastName" placeholder="Last Name" ng-model="formData.txtEditUserLastName" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-4 col-xs-12">Username*</label>
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control" id="txtEditUserAlias" placeholder="username" ng-model="formData.txtEditUserAlias" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-4 col-xs-12">Email*</label>
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <input type="email" class="form-control" id="txtEditUserEmail" placeholder="sample_email@email.com" ng-model="formData.txtEditUserEmail" required>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-4 col-xs-12">Password*</label>
+                            <div class="col-md-7 col-sm-6 col-xs-12">
+                                <input type="password" class="form-control" id="txtEditUserPassword" ng-model="formData.txtEditUserPassword" required>
+                            </div>
+                        </div>
+
+                    </form>
+                    <!-- /Edit User Modal Form -->
+
+                </div>
+                <!-- /Edit User Modal Body -->
+
+                <!-- Edit User Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="updateUser();" ng-disabled="editUserForm.$invalid">Save</button>
+                </div>
+                <!-- /Edit User Modal Footer -->
+
+            </div>
+            <!-- /Edit User Modal Content -->
+
+        </div>
+    </div>
+    <!-- /Edit User Modal -->
+
+    <!-- Delete User Modal -->
+    <div id="modalDeleteUser" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Delete User Modal Content -->
+            <div class="modal-content">
+
+                <!-- Delete User Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Delete User</h4>
+                </div>
+                <!-- /Delete User Modal Header -->
+
+                <!-- Delete User Modal Body -->
+                <div class="modal-body">
+
+                    <!-- Delete User Modal Form -->
+                    <form class="form-horizontal form-label-left" name="deleteUserForm" novalidate>
+
+                        <div class="form-group">
+                            <div class="col-md-10 col-sm-12 col-xs-12">
+                                <h5>Are you sure you'd like to delete this record?</h5>
+                                <input type="hidden" class="form-control" id="txtDeleteUserID" placeholder="User ID" ng-model="formData.txtDeleteUserID" required readonly>
+                            </div>
+                        </div>
+
+                    </form>
+                    <!-- /Delete User Modal Form -->
+
+                </div>
+                <!-- /Delete User Modal Body -->
+
+                <!-- Delete User Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-dark" data-dismiss="modal" style="margin-bottom: 5px" ng-click="deleteUser();" ng-disabled="deleteUserForm.$invalid">Yes</button>
+                </div>
+                <!-- /Delete User Modal Footer -->
+
+            </div>
+            <!-- /Delete User Modal Content -->
+
+        </div>
+    </div>
+    <!-- /Delete User Modal -->
+    <!-- /Modals -->
+
+</div>

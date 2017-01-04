@@ -108,6 +108,9 @@ angular.module('gservice', [])
                 });
             }
 
+            // Initialize bounds variable to hold radial bounds
+            var bounds = new google.maps.LatLngBounds();
+
             // If a filter was used set the icons yellow, otherwise blue
             if (filter) {
                 icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
@@ -115,23 +118,35 @@ angular.module('gservice', [])
                 icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
             }
 
-            // Loop through each location in the array and place a marker
-            locations.forEach(function(n, i) {
-                var marker = new google.maps.Marker({
-                    position: n.latlon,
-                    map: map,
-                    title: "Big Map",
-                    icon: icon,
+            if (locations) {
+
+                // Loop through each location in the array and place a marker
+                locations.forEach(function(n, i) {
+
+                    var marker = new google.maps.Marker({
+                        position: n.latlon,
+                        map: map,
+                        title: "Big Map",
+                        icon: icon,
+                    });
+
+                    // For each marker created, add a listener that checks for clicks
+                    google.maps.event.addListener(marker, 'click', function(e) {
+
+                        // When clicked, open the selected marker's message
+                        currentSelectedMarker = n;
+                        n.message.open(map, marker);
+                    });
+
+                    // Extend radial bound according to marker position
+                    bounds.extend(marker.position);
+
                 });
 
-                // For each marker created, add a listener that checks for clicks
-                google.maps.event.addListener(marker, 'click', function(e) {
+                // Fit the radial bounds
+                map.fitBounds(bounds);
 
-                    // When clicked, open the selected marker's message
-                    currentSelectedMarker = n;
-                    n.message.open(map, marker);
-                });
-            });
+            } // end if location not empty
 
             // Set initial location as a bouncing red marker
             var initialLocation = new google.maps.LatLng(latitude, longitude);
