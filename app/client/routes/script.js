@@ -1,9 +1,12 @@
  // create the module and name it scotchApp
  // also include ngRoute for all our routing needs
  var scotchApp = angular.module('scotchApp', ['ngRoute',
+     'ngCookies',
      'controllerStoreDetail', 'controllerStoreCategory',
      'controllerStoreQuery', 'controllerUserDetail',
-     'geolocation', 'gservice', 'datatables'
+     'controllerUserAuthentication', 'geolocation',
+     'gservice', 'aservice',
+     'datatables'
  ]);
 
  // configure our routes
@@ -66,8 +69,8 @@
  });
 
  // create the controller and inject Angular's $scope
- scotchApp.controller('mainController', ['$scope', '$location', '$window',
-     function($scope, $location, $window) {
+ scotchApp.controller('mainController', ['$scope', '$location', '$window', 'aservice',
+     function($scope, $location, $window, aservice) {
 
          slider();
 
@@ -94,6 +97,14 @@
                  $window.location.reload();
 
              } // end method changeView
+
+          $scope.logout = function() {
+
+            $scope.changeView('/');
+
+            aservice.ClearCredentials();
+
+          }
 
      }
  ]);

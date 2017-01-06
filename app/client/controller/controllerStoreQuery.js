@@ -71,4 +71,10 @@ controllerStoreQuery.controller('controllerStoreQuery', function($scope, $log, $
 
     }
 
+    $scope.getDirections = function() {
+
+      alert("Hello")
+
+    }
+
 });

@@ -40,7 +40,7 @@
                     <div class="clearfix"></div>
 
                     <!-- Administrator SideBar Profile -->
-                    <div class="profile">
+                    <!-- <div class="profile">
                         <div class="profile_pic">
                             <img src="/bootstrap/images/profile.jpg" alt="..." class="img-circle profile_img">
                         </div>
@@ -48,16 +48,16 @@
                             <h2>Daniel Almazan</h2>
                             <span>Administrator</span>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /Administrator SideBar Profile -->
 
-                    <br />
+                    <!-- <br /> -->
 
                     <!-- Administrator SideBar Menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
-                            <h3>General</h3>
+
                             <ul class="nav side-menu">
 
                                 <!-- Administrator Dashboard -->
@@ -81,9 +81,9 @@
                                         <li>
                                             <a href="#store_details"> Store Details</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="#user_details"> User Details </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </li>
                                 <!-- /Administrator Maintenance -->
@@ -95,9 +95,9 @@
                                         <span class="fa fa-chevron-down"></span>
                                     </a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li>
+                                        <!-- <li>
                                             <a href="#acct_setting"> Account Setting </a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a href="#archive"> Archives </a>
                                         </li>
@@ -109,23 +109,6 @@
                         </div>
                     </div>
                     <!-- /Administrator SideBar Menu -->
-
-                    <!-- /Administrator SideBar Footer Buttons -->
-                    <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <!-- /Administrator SideBar Footer Buttons -->
 
                 </div>
             </div>
@@ -141,18 +124,11 @@
                         </div>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="/bootstrap/images/profile.jpg" alt="...">Daniel Alamazan
-                                    <span class=" fa fa-angle-down"></span>
+                            <li class <!-- keke -->
+                                <a ng-click="logout()">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    &nbspSign-out
                                 </a>
-                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li>
-                                        <a ng-click="changeView('/')">
-                                            <i class="fa fa-sign-out pull-right"></i> Log Out
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
 
                         </ul>
@@ -219,7 +195,7 @@
     <!-- Modals -->
     <div id="modalSignIn" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm">
-            <div class="modal-content">
+            <div class="modal-content" ng-controller="controllerUserAuthentication">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
@@ -230,29 +206,31 @@
 
                 <div class="modal-body">
 
-                    <form class="form-horizontal form-label-left" name="restoreCategoryForm" novalidate>
+                    <form class="form-horizontal form-label-left" name="signinForm" ng-submit="login()" role="form" novalidate>
 
                         <br/>
 
                         <div>
-                            <input type="text" class="form-control" placeholder="Username" required="" />
+                            <input type="text" class="form-control" placeholder="Username" ng-model="username" required="" />
                         </div>
 
                         <br/>
 
                         <div>
-                            <input type="password" class="form-control" placeholder="Password" required="" />
+                            <input type="password" class="form-control" placeholder="Password" ng-model="password" required="" />
                         </div>
 
                         <br/>
                         <br/>
 
-                    </form>
+
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-default" ng-click="changeView('/dashx')">Submit</button>
+                    <button type="submit" ng-disabled="signinForm.$invalid || dataLoading" class="btn btn-default">Submit</button>
                 </div>
+
+                </form>
 
             </div>
         </div>

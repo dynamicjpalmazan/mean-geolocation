@@ -245,7 +245,11 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
 
     }; // end function restoreStore
 
+    $scope.getDirections = function() {
 
+      alert("Hello")
+
+    }
 
     // Interval-based Functions
     // ----------------------------------------------------------------------------

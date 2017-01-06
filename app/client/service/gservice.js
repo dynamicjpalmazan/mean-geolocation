@@ -1,4 +1,17 @@
-// Creates the gservice factory. This will be the primary means by which we interact with Google Maps
+// Global Variables
+// ---------------------------------------------------------------------
+// Map containing variable
+var directionalMap;
+
+// Direction Display (declared globally for single direction routes)
+var directionsDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+        strokeColor: "teal"
+    }
+});
+
+// Creates the gservice factory.
+// This will be the primary means by which we interact with Google Maps
 angular.module('gservice', [])
     .factory('gservice', function($rootScope, $http) {
 
@@ -72,7 +85,7 @@ angular.module('gservice', [])
                     '<p><b>Store Name</b>: ' + store.storeName +
                     '<br><b>Address</b>: ' + store.storeAddress +
                     '<br><b>Category</b>: ' + store.storeCategory +
-                    '</p>';
+                    '</p><br><button class="btn btn-default btn-dark" onclick="calculateAndDisplayRoute(' + store.storeLocation[1] + "," + store.storeLocation[0] + ')"><span class="glyphicon glyphicon-share-alt"></span>&nbspGet Directions</button>';
 
                 // Converts each of the JSON records into Google Maps Location format (Note [Lat, Lng] format).
                 locations.push({
@@ -106,7 +119,10 @@ angular.module('gservice', [])
                     zoom: 15,
                     center: myLatLng
                 });
+
             }
+
+            directionalMap = map
 
             // Initialize bounds variable to hold radial bounds
             var bounds = new google.maps.LatLngBounds();
@@ -126,7 +142,7 @@ angular.module('gservice', [])
                     var marker = new google.maps.Marker({
                         position: n.latlon,
                         map: map,
-                        title: "Big Map",
+                        title: n.storeName,
                         icon: icon,
                     });
 
@@ -136,6 +152,8 @@ angular.module('gservice', [])
                         // When clicked, open the selected marker's message
                         currentSelectedMarker = n;
                         n.message.open(map, marker);
+                        document.getElementById('txtToLocation').value = n.latlon;
+
                     });
 
                     // Extend radial bound according to marker position
@@ -194,3 +212,30 @@ angular.module('gservice', [])
 
         return googleMapService;
     });
+
+function calculateAndDisplayRoute(lati, longi) {
+
+    var directionsService = new google.maps.DirectionsService();
+
+    directionsDisplay.setMap(directionalMap);
+    directionsDisplay.setOptions({
+        suppressMarkers: true
+    });
+
+    var start = new google.maps.LatLng(document.getElementById('txtLatitude').value, document.getElementById('txtLongitude').value);
+    var end = new google.maps.LatLng(lati, longi);
+
+    directionsService.route({
+            origin: start,
+            destination: end,
+            travelMode: 'DRIVING'
+        },
+
+        function(response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+}
