@@ -8,6 +8,7 @@
         "body-parser": "~1.5.2",
         "jsonwebtoken": "^5.0.2",
         "method-override": "~2.1.2",
-        "datatables": "^1.10"
+        "datatables": "^1.10",
+        "serve-favicon": "~2.3.0"
     }
 }

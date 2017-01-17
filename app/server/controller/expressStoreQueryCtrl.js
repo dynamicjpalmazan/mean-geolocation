@@ -10,6 +10,8 @@ exports.findNearbyStores = function(req, res) {
     var long = req.body.longitude;
     var distance = req.body.distance;
     var category = req.body.category.trim();
+    var name = req.body.name.trim();
+    var regexp = new RegExp("^"+ name);
 
     // Opens a generic Mongoose Query. Depending on the post body we will...
     var query = mongoStoreDetailMdl.find({
@@ -35,6 +37,10 @@ exports.findNearbyStores = function(req, res) {
     // ... Other queries will go here ...
     if (category) {
         query = query.where('storeCategory').equals(category);
+    }
+
+    if (name) {
+        query = query.where('storeName').equals(regexp);
     }
 
     // Execute Query and Return the Query Results

@@ -25,13 +25,7 @@
          controller: 'mainController'
      })
 
-     // route for the register page
-     .when('/register', {
-         templateUrl: 'partials/main/register.html',
-         controller: 'mainController'
-     })
-
-     // route for the admin home page
+     // route for the administrator home page
      .when('/dashx', {
          templateUrl: 'partials/administrator/admin_dashboard.html',
          controller: 'dashxController'
@@ -49,12 +43,6 @@
          controller: 'storeDetailController'
      })
 
-     // route for the user detail maintenance page
-     .when('/user_details', {
-         templateUrl: 'partials/administrator/admin_userdetail.html',
-         controller: 'userDetailController'
-     })
-
      // route for the archive page
      .when('/archive', {
          templateUrl: 'partials/administrator/admin_archives.html',
@@ -63,7 +51,7 @@
 
      // route back to login page
      .otherwise({
-         redirectTo: '/dashx' // change to login '/'
+         redirectTo: '/'
      });
 
  });
@@ -77,13 +65,30 @@
          // retrieve 'location'
          $scope.location = $location.path();
 
+         // check for active user
+         var active = aservice.GetCredentials();
+
          if ($location.path() === '/' || $location.path() === '/store-list') {
 
              $scope.bodyClass = 'background:#F7F7F7';
 
+             if (active === true) {
+
+                 $location.path('/dashx');
+                 $window.location.reload();
+
+             }
+
          } else {
 
              $scope.bodyClass = 'background:#2a3f54';
+
+             if (active === false) {
+
+                 $location.path('/');
+                 $window.location.reload();
+
+             }
 
          }
 
@@ -98,13 +103,13 @@
 
              } // end method changeView
 
-          $scope.logout = function() {
+         $scope.logout = function() {
 
-            $scope.changeView('/');
+             $scope.changeView('/');
 
-            aservice.ClearCredentials();
+             aservice.ClearCredentials();
 
-          }
+         }
 
      }
  ]);
@@ -129,19 +134,12 @@
 
  scotchApp.controller('storeCategoryController', function($scope) {
 
-
-     //akjhdh
-
  });
 
  scotchApp.controller('userDetailController', function($scope) {
 
-     //akjhdh
-
  });
 
  scotchApp.controller('contactController', function($scope) {
-
-     //dlfsdjf
 
  });

@@ -24,8 +24,8 @@ angular.module('gservice', [])
         var locations = [];
 
         // Selected Location (initialize to center of America)
-        var selectedLat = 39.50;
-        var selectedLong = -98.35;
+        var selectedLat = 14.584;
+        var selectedLong = 121.060;
 
         // Handling Clicks and location selection
         googleMapService.clickLat = 0;
@@ -233,9 +233,24 @@ function calculateAndDisplayRoute(lati, longi) {
 
         function(response, status) {
             if (status === 'OK') {
+
+                // Display success message
+                new PNotify({
+                    title: 'Success!',
+                    text: 'Directions were successfully retrieved.',
+                    type: 'success'
+                });
+
                 directionsDisplay.setDirections(response);
             } else {
-                window.alert('Directions request failed due to ' + status);
+
+                // Display error message
+                new PNotify({
+                    title: 'Error!',
+                    text: 'Directions request failed due to ' + status + '.',
+                    type: 'error'
+                });
+
             }
         });
 }

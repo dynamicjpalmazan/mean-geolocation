@@ -22,11 +22,16 @@ controllerUserAuthentication
 
             $scope.login = function() {
 
-                $scope.dataLoading = true;
-
                 aservice.Login($scope.username, $scope.password, function(response) {
 
                     if (response.success) {
+
+                        // Display success message
+                        new PNotify({
+                            title: 'Success!',
+                            text: 'Account sign-in was successful.',
+                            type: 'success'
+                        });
 
                         aservice.SetCredentials($scope.username, $scope.password);
                         $location.path('/dashx');
@@ -34,8 +39,15 @@ controllerUserAuthentication
 
                     } else {
 
-                        $scope.error = response.message;
-                        $scope.dataLoading = false;
+                        $scope.username = "";
+                        $scope.password = "";
+
+                        // Display error message
+                        new PNotify({
+                            title: 'Error!',
+                            text: 'Invalid credentials were used.',
+                            type: 'error'
+                        });
 
                     } // end conditional statements
 

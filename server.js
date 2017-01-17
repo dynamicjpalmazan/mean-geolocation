@@ -7,6 +7,7 @@ var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
 var app             = express();
+var favicon = require('serve-favicon');
 
 // Express Configuration
 // -----------------------------------------------------

@@ -8,6 +8,7 @@
     <title>Store Locator</title>
 
     <!-- Imports -->
+    <link rel="icon" href="/bootstrap/images/Logo.png" type="image/x-icon" />
     <link rel="import" href="/component/components.html">
     <!-- /Imports -->
 
@@ -25,37 +26,35 @@
         <div class="main_container">
 
             <!-- Index Administrator Navigation -->
+
+            <!-- SideBar -->
             <div class="col-md-3 left_col" ng-cloak ng-show="location !==  '/' && location !== '/store-list'">
+
+                <!-- Index Left_Col Scroll View -->
                 <div class="left_col scroll-view">
 
                     <!-- Administrator SideBar Title -->
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="#dashx" class="site_title">
-                            <i class="fa fa-compass"></i>
-                            <span>Store Locator</span>
-                        </a>
+                    <div style="border: 0;">
+                        <img src="/bootstrap/images/Logo.png" alt="" style="margin: 5% 5% -5% 12%;" height="75%;" width="75%" />
                     </div>
                     <!-- /Administrator SideBar Title -->
 
                     <div class="clearfix"></div>
 
                     <!-- Administrator SideBar Profile -->
-                    <!-- <div class="profile">
-                        <div class="profile_pic">
-                            <img src="/bootstrap/images/profile.jpg" alt="..." class="img-circle profile_img">
-                        </div>
-                        <div class="profile_info">
-                            <h2>Daniel Almazan</h2>
-                            <span>Administrator</span>
-                        </div>
-                    </div> -->
+                    <div class="profile">
+                        <center style="color: white;">
+                            <h3 class="brushify">Store Locator</h3>
+                        </center>
+                    </div>
                     <!-- /Administrator SideBar Profile -->
 
-                    <!-- <br /> -->
+                    <br>
 
                     <!-- Administrator SideBar Menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
+                        <!-- Menu Section -->
                         <div class="menu_section">
 
                             <ul class="nav side-menu">
@@ -107,14 +106,21 @@
 
                             </ul>
                         </div>
+                        <!-- /Menu Section -->
+
                     </div>
                     <!-- /Administrator SideBar Menu -->
 
                 </div>
-            </div>
+                <!-- /Index Left_Col Scroll View -->
 
+            </div>
+            <!-- /SideBar -->
+
+            <!-- TopNav -->
             <div class="top_nav" ng-cloak ng-show="location !==  '/' && location !== '/store-list'">
 
+                <!-- NavMenu -->
                 <div class="nav_menu">
                     <nav class="" role="navigation">
                         <div class="nav toggle">
@@ -125,18 +131,25 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class <!-- keke -->
-                                <a ng-click="logout()">
-                                    <span class="glyphicon glyphicon-log-out"></span>
-                                    &nbspSign-out
+                                <!-- <a ng-click="logout()">
+                                    <span class="glyphicon glyphicon-log-out"></span> &nbspSign-out
+                                </a> -->
+                                <a data-toggle="modal" data-target="#modalSignOut">
+                                    <span class="glyphicon glyphicon-log-out"></span> &nbspSign-out
                                 </a>
                             </li>
 
                         </ul>
                     </nav>
                 </div>
+                <!-- /NavMenu -->
+
             </div>
+            <!-- /TopNav -->
+
             <!-- /Index Administrator Navigation -->
 
+            <!-- Index User Navigation -->
             <nav class="navbar navbar-default" ng-cloak ng-show="location ===  '/' || location === '/store-list'">
 
                 <div class="container-fluid">
@@ -145,16 +158,16 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="#">
-                                    <h2>Store Locator</h2>
+                                <a ng-click="changeView('/')">
+                                    <h2 class="brushify">Store Locator</h2>
                                 </a>
                             </li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#">
-                                    <h5>Map</h5>
+                                <a ng-click="changeView('/')">
+                                    <h5>Map View</h5>
                                 </a>
                             </li>
                             <li>
@@ -181,6 +194,7 @@
                 </div>
                 <!-- /.container-fluid -->
             </nav>
+            <!-- /Index User Navigation -->
 
             <!-- page content -->
             <div ng-cloak ng-view></div>
@@ -193,47 +207,96 @@
     <!--/Index Body Container-->
 
     <!-- Modals -->
-    <div id="modalSignIn" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content" ng-controller="controllerUserAuthentication">
+    <div ng-controller="controllerUserAuthentication">
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">×</span>
-                </button>
-                    <h4 class="modal-title" id="myModalLabel">Sign-in</h4>
-                </div>
+        <!-- Sign-in Modal -->
+        <div id="modalSignIn" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
 
-                <div class="modal-body">
+            <div class="modal-dialog modal-sm">
 
+                <!-- Sign-in Modal Content -->
+                <div class="modal-content">
+
+                    <!-- Sign-in Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Sign-in</h4>
+                    </div>
+                    <!-- /Sign-in Modal Header -->
+
+                    <!-- Sign-in Modal Form -->
                     <form class="form-horizontal form-label-left" name="signinForm" ng-submit="login()" role="form" novalidate>
 
-                        <br/>
+                        <!-- Sign-in Modal Body -->
+                        <div class="modal-body">
 
-                        <div>
+                            <br>
                             <input type="text" class="form-control" placeholder="Username" ng-model="username" required="" />
-                        </div>
-
-                        <br/>
-
-                        <div>
+                            <br>
                             <input type="password" class="form-control" placeholder="Password" ng-model="password" required="" />
+                            <br>
+                            <br>
+
                         </div>
+                        <!-- /Sign-in Modal Body -->
 
-                        <br/>
-                        <br/>
+                        <!-- Sign-in Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="submit" ng-disabled="signinForm.$invalid" class="btn btn-default">Submit</button>
+                        </div>
+                        <!-- /Sign-in Modal Footer -->
 
+                    </form>
+                    <!-- /Sign-in Modal Form -->
 
                 </div>
-
-                <div class="modal-footer">
-                    <button type="submit" ng-disabled="signinForm.$invalid || dataLoading" class="btn btn-default">Submit</button>
-                </div>
-
-                </form>
+                <!-- /Sign-in Modal Content -->
 
             </div>
+
         </div>
+        <!-- /Sign-in Modal -->
+
+        <!-- Sign-out Modal -->
+        <div id="modalSignOut" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                  <span aria-hidden="true">×</span>
+                </button>
+                        <h4 class="modal-title" id="myModalLabel">Sign-out</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form class="form-horizontal form-label-left">
+
+                            <br>
+
+                            <p>Are you sure you'd like to sign-out from your account?</p>
+
+                            <br>
+                            <br>
+
+
+                    </div>
+
+                    <div class=" modal-footer ">
+                        <button class="btn btn-default" data-dismiss="modal">No</button>
+                        <button class="btn btn-default" data-dismiss="modal" ng-click="logout()">Yes</button>
+                    </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Sign-out Modal -->
+
     </div>
     <!-- Modals -->
 

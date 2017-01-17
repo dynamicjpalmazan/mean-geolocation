@@ -9,9 +9,9 @@ controllerStoreDetail.controller('controllerStoreDetail', function($scope, $http
     var lat = 0;
     var long = 0;
 
-    // Set initial coordinates to the center of the US
-    $scope.formData.txtLatitude = 39.500;
-    $scope.formData.txtLongitude = -98.350;
+    // Set initial coordinates
+    $scope.formData.txtLatitude = 14.584;
+    $scope.formData.txtLongitude = 121.060;
 
     // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data) {

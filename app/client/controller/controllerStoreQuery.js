@@ -7,6 +7,10 @@ controllerStoreQuery.controller('controllerStoreQuery', function($scope, $log, $
     $scope.formData = {};
     var queryBody = {};
 
+    // Set initial coordinates
+    $scope.formData.txtLatitude = 14.584;
+    $scope.formData.txtLongitude = 121.060;
+
     // Functions
     // ----------------------------------------------------------------------------
     // Get User's actual coordinates based on HTML5 at window load
@@ -39,7 +43,8 @@ controllerStoreQuery.controller('controllerStoreQuery', function($scope, $log, $
             longitude: parseFloat($scope.formData.txtLongitude),
             latitude: parseFloat($scope.formData.txtLatitude),
             distance: parseFloat($scope.formData.txtRadius),
-            category: $("#txtStoreCategory").val().trim()
+            category: $("#txtStoreCategory").val().trim(),
+            name: $("#txtName").val().trim()
         };
 
         // Post the queryBody to the /query POST route to retrieve the filtered results
@@ -58,16 +63,39 @@ controllerStoreQuery.controller('controllerStoreQuery', function($scope, $log, $
                 $scope.formData.txtRadius = "";
                 $scope.formData.txtStoreCategory = "";
 
+                // Display success message
+                new PNotify({
+                    title: 'Success!',
+                    text: 'Map markers were successfully filtered.',
+                    type: 'success'
+                });
+
             })
             .error(function(queryResults) {
                 console.log('Error ' + queryResults);
+                // Display error message
+                new PNotify({
+                    title: 'Error!',
+                    text: 'Failed to filter map markers.',
+                    type: 'error'
+                });
             })
     };
 
     $scope.clearFilter = function() {
 
+      // Clear fields
+      $scope.formData.txtName = "";
+
       // Clear map filters
       gservice.refresh($scope.formData.txtLatitude, $scope.formData.txtLongitude);
+
+      // Display success message
+      new PNotify({
+          title: 'Success!',
+          text: 'Map filters were successfully cleared!',
+          type: 'success'
+      });
 
     }
 
